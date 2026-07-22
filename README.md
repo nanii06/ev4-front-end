@@ -65,8 +65,6 @@ Se utilizó Claude (Anthropic) como apoyo durante el desarrollo, principalmente 
 - Sugerir validaciones de formulario.
 - Diseñar la función simulada "Sugerencia IA" según categoría del recurso.
 
-## Capturas de pantalla
-_(Agregar aquí imágenes del CRUD funcionando: formulario, listado, edición, eliminación, cambio de tema)_
 
 ## Conclusión
 El desarrollo de esta aplicación permitió aplicar de forma práctica los tres mecanismos de almacenamiento del navegador (Local Storage, Session Storage y Cookies), comprendiendo las diferencias de persistencia entre cada uno, además de reforzar el uso de hooks personalizados y componentes reutilizables en un proyecto real con Next.js y TypeScript.
