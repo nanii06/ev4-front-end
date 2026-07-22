@@ -62,7 +62,11 @@ export default function Home() {
 >
       <Header theme={theme} onToggleTheme={() => setTheme(theme === "dark" ? "light" : "dark")} />
 
-      <ResourceForm onSubmit={handleSaveResource} initialData={editingResource} />
+      <ResourceForm
+        key={editingResource?.id ?? "new"}
+        onSubmit={handleSaveResource}
+        initialData={editingResource}
+      />
 
       <hr />
 
