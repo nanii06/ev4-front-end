@@ -1,6 +1,7 @@
 "use client";
 
 import { Resource } from "@/types/Resource";
+import { getSuggestionForCategory } from "@/utils/aiSuggestions";
 
 interface ResourceCardProps {
   resource: Resource;
@@ -19,6 +20,10 @@ export default function ResourceCard({ resource, onEdit, onDelete }: ResourceCar
       {resource.responsable && <p>Responsable: {resource.responsable}</p>}
       {resource.descripcion && <p>{resource.descripcion}</p>}
       <p>Registrado: {resource.fechaRegistro}</p>
+
+      <p style={{ fontStyle: "italic", opacity: 0.8 }}>
+        {getSuggestionForCategory(resource.categoria)}
+      </p>
 
       <button onClick={() => onEdit(resource)}>Editar</button>
       <button onClick={() => onDelete(resource.id)}>Eliminar</button>
