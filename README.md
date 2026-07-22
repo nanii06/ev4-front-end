@@ -70,3 +70,30 @@ _(Agregar aquí imágenes del CRUD funcionando: formulario, listado, edición, e
 
 ## Conclusión
 El desarrollo de esta aplicación permitió aplicar de forma práctica los tres mecanismos de almacenamiento del navegador (Local Storage, Session Storage y Cookies), comprendiendo las diferencias de persistencia entre cada uno, además de reforzar el uso de hooks personalizados y componentes reutilizables en un proyecto real con Next.js y TypeScript.
+
+## screenshots
+
+### Formulario de creación
+![Formulario vacío](formulario.vacio.png)
+
+### Validación de formulario
+![Errores de validación](validacion.formulario.png)
+
+### Listado de recursos
+![Listado](productos.png)
+
+### Edición de recurso
+![Edición](editar.formulario.png)
+
+### Confirmación de eliminación
+![Confirmar eliminar](confirmar.eliminar.png)
+
+### Búsqueda por nombre
+![Búsqueda](busqueda.nombre.png)
+
+### Filtro por categoría
+![Filtro](filtro.categoria.png)
+
+### Tema oscuro y claro
+![Tema oscuro](tema.oscuro.png)
+![Tema claro](tema.claro.png)
