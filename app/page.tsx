@@ -1,16 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useSessionStorage } from "@/hooks/useSessionStorage";
 import { Resource } from "@/types/Resource";
 import ResourceForm from "@/components/ResourceForm";
 import ResourceList from "@/components/ResourceList";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
+import SearchBar from "@/components/SearchBar";
+import FilterCategory from "@/components/FilterCategory";
 
 export default function Home() {
   const [resources, setResources] = useLocalStorage<Resource[]>("lab_resources", []);
   const [editingResource, setEditingResource] = useState<Resource | undefined>(undefined);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+
+  // Filtros temporales -> Session Storage
+  const [searchTerm, setSearchTerm] = useSessionStorage<string>("lab_resource_filter_search", "");
+  const [selectedCategory, setSelectedCategory] = useSessionStorage<string>("lab_resource_filter_category", "");
 
   function handleSaveResource(resource: Resource) {
     if (editingResource) {
@@ -28,6 +35,19 @@ export default function Home() {
     }
   }
 
+  const categories = useMemo(
+    () => Array.from(new Set(resources.map((r) => r.categoria))).filter(Boolean),
+    [resources]
+  );
+
+  const filteredResources = useMemo(() => {
+    return resources.filter((r) => {
+      const matchesSearch = r.nombre.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory ? r.categoria === selectedCategory : true;
+      return matchesSearch && matchesCategory;
+    });
+  }, [resources, searchTerm, selectedCategory]);
+
   return (
     <main style={{ padding: 24 }}>
       <h1>Gestión de Recursos Tecnológicos</h1>
@@ -36,8 +56,11 @@ export default function Home() {
 
       <hr />
 
+      <SearchBar value={searchTerm} onChange={setSearchTerm} />
+      <FilterCategory categories={categories} selected={selectedCategory} onChange={setSelectedCategory} />
+
       <ResourceList
-        resources={resources}
+        resources={filteredResources}
         onEdit={(r) => setEditingResource(r)}
         onDelete={(id) => setDeleteTargetId(id)}
       />
