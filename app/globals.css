@@ -1,26 +1,135 @@
-@import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #0d0d0d;
+  color: #eaeaea;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1, h2, h3 {
+  margin: 0 0 8px 0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 24px 0;
+}
+
+/* Formularios */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 480px;
+  padding: 20px;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  background-color: #161616;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #aaa;
+}
+
+input, select, textarea {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: #1e1e1e;
+  color: #eaeaea;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #6ea8fe;
+}
+
+textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+/* Errores de validación */
+form p {
+  margin: 0;
+  color: #ff6b6b;
+  font-size: 12px;
+}
+
+/* Botones */
+button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #6ea8fe;
+  color: #0d0d0d;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* Botón eliminar (segundo botón dentro de ResourceCard) */
+.resource-card button + button {
+  background-color: #ff6b6b;
+  margin-left: 8px;
+}
+
+/* Buscador y filtro */
+input[placeholder*="Buscar"] {
+  max-width: 300px;
+  margin-right: 12px;
+}
+
+/* Modo claro */
+.theme-light form {
+  background-color: #f0f0f0;
+  border-color: #ddd;
+}
+
+.theme-light label {
+  color: #555;
+}
+
+.theme-light input,
+.theme-light select,
+.theme-light textarea {
+  background-color: #ffffff;
+  color: #111;
+  border-color: #ccc;
+}
+
+.theme-light input:focus,
+.theme-light select:focus,
+.theme-light textarea:focus {
+  border-color: #6ea8fe;
+}
+
+.theme-light .resource-card {
+  background-color: #ffffff !important;
+  border-color: #ddd !important;
+  color: #111;
+}
+
+.theme-light hr {
+  border-top-color: #ddd;
 }

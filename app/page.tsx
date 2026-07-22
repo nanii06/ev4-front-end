@@ -53,10 +53,11 @@ export default function Home() {
 
   return (
     <main
+  className={theme === "light" ? "theme-light" : ""}
   style={{
     padding: 24,
-    backgroundColor: theme === "dark" ? "#111" : "#fafafa",
-    color: theme === "dark" ? "#eee" : "#111",
+    backgroundColor: theme === "dark" ? "#0d0d0d" : "#fafafa",
+    color: theme === "dark" ? "#eaeaea" : "#111",
     minHeight: "100vh",
   }}
 >

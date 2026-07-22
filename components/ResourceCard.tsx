@@ -1,3 +1,4 @@
+// components/ResourceCard.tsx
 "use client";
 
 import { Resource } from "@/types/Resource";
@@ -11,7 +12,18 @@ interface ResourceCardProps {
 
 export default function ResourceCard({ resource, onEdit, onDelete }: ResourceCardProps) {
   return (
-    <div style={{ border: "1px solid #444", borderRadius: 8, padding: 12, marginBottom: 8 }}>
+    <div
+      className="resource-card"
+      style={{
+        border: "1px solid #2a2a2a",
+        borderRadius: 12,
+        padding: 16,
+        backgroundColor: "#161616",
+        display: "flex",
+        flexDirection: "column",
+        gap: 4,
+      }}
+    >
       <h3>{resource.nombre}</h3>
       <p>Categoría: {resource.categoria}</p>
       <p>Cantidad: {resource.cantidad}</p>
@@ -25,8 +37,10 @@ export default function ResourceCard({ resource, onEdit, onDelete }: ResourceCar
         {getSuggestionForCategory(resource.categoria)}
       </p>
 
-      <button onClick={() => onEdit(resource)}>Editar</button>
-      <button onClick={() => onDelete(resource.id)}>Eliminar</button>
+      <div style={{ marginTop: 8 }}>
+        <button onClick={() => onEdit(resource)}>Editar</button>
+        <button onClick={() => onDelete(resource.id)}>Eliminar</button>
+      </div>
     </div>
   );
 }

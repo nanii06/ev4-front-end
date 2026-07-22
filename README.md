@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sistema de Gestión de Recursos Tecnológicos
 
-## Getting Started
+## Nombre Estudiante
+Danitza Isla Ojeda
 
-First, run the development server:
+## Descripción del proyecto
+Aplicación SPA desarrollada con React y Next.js para administrar los recursos tecnológicos de un laboratorio (notebooks, routers, switches, impresoras 3D, sensores IoT, entre otros). Permite registrar, listar, editar, eliminar, buscar y filtrar recursos, utilizando distintos mecanismos de almacenamiento del navegador según el tipo de dato.
 
+## Tecnologías utilizadas
+- Next.js (App Router)
+- React
+- TypeScript
+- Local Storage
+- Session Storage
+- Cookies (vía librería `js-cookie`)
+
+## Instalación y ejecución
 ```bash
+git clone https://github.com/nanii06/ev4-front-end.git
+cd ev4-front-end
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+Luego abrir `http://localhost:3000` en el navegador.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades
+- Crear recurso
+- Listar recursos
+- Editar recurso
+- Eliminar recurso (con confirmación)
+- Buscar por nombre
+- Filtrar por categoría
+- Guardar datos principales en Local Storage
+- Guardar filtros/búsqueda temporal en Session Storage
+- Guardar preferencia de tema (claro/oscuro) en Cookies
+- Sugerencia IA simulada según categoría del recurso
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Componentes principales
+- **Header**: título de la app y control de cambio de tema.
+- **ResourceForm**: formulario de creación y edición de recursos (reutilizado para ambos casos).
+- **ResourceList**: renderiza la lista de recursos filtrados.
+- **ResourceCard**: representa un recurso individual, con sus acciones de editar/eliminar y la sugerencia IA.
+- **SearchBar**: input de búsqueda por nombre.
+- **FilterCategory**: selector de filtro por categoría.
+- **ConfirmDeleteModal**: modal de confirmación antes de eliminar un recurso.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Hooks utilizados
+- `useState`: manejo de estado de formularios, filtros y modales.
+- `useEffect`: sincronización de los hooks de storage con el navegador.
+- `useMemo`: cálculo optimizado de categorías disponibles y lista filtrada.
+- **useLocalStorage** (personalizado): persiste la lista de recursos en Local Storage.
+- **useSessionStorage** (personalizado): persiste el término de búsqueda y la categoría seleccionada en Session Storage.
+- **useCookie** (personalizado): persiste la preferencia de tema (claro/oscuro) en una cookie.
 
-## Learn More
+## Uso de almacenamiento del navegador
+- **Local Storage** (clave `lab_resources`): almacena la lista completa de recursos tecnológicos, persistente entre sesiones.
+- **Session Storage** (claves `lab_resource_filter_search` y `lab_resource_filter_category`): almacena el filtro de búsqueda y categoría seleccionada, se pierde al cerrar la pestaña.
+- **Cookies** (clave `lab_theme`): almacena la preferencia de tema visual del usuario, con expiración de 30 días.
 
-To learn more about Next.js, take a look at the following resources:
+## Uso de inteligencia artificial
+Se utilizó Claude (Anthropic) como apoyo durante el desarrollo, principalmente para:
+- Definir la estructura inicial de carpetas y componentes.
+- Diseñar los hooks personalizados (`useLocalStorage`, `useSessionStorage`, `useCookie`) y su manejo correcto de hidratación en Next.js.
+- Corregir errores durante el desarrollo (error de hidratación SSR, formulario de edición que no actualizaba sus valores).
+- Sugerir validaciones de formulario.
+- Diseñar la función simulada "Sugerencia IA" según categoría del recurso.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Capturas de pantalla
+_(Agregar aquí imágenes del CRUD funcionando: formulario, listado, edición, eliminación, cambio de tema)_
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Conclusión
+El desarrollo de esta aplicación permitió aplicar de forma práctica los tres mecanismos de almacenamiento del navegador (Local Storage, Session Storage y Cookies), comprendiendo las diferencias de persistencia entre cada uno, además de reforzar el uso de hooks personalizados y componentes reutilizables en un proyecto real con Next.js y TypeScript.

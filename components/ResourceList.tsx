@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Resource } from "@/types/Resource";
@@ -15,7 +16,14 @@ export default function ResourceList({ resources, onEdit, onDelete }: ResourceLi
   }
 
   return (
-    <div>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+        gap: 16,
+        marginTop: 16,
+      }}
+    >
       {resources.map((r) => (
         <ResourceCard key={r.id} resource={r} onEdit={onEdit} onDelete={onDelete} />
       ))}
