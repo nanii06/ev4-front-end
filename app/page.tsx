@@ -10,11 +10,13 @@ import ResourceList from "@/components/ResourceList";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 import SearchBar from "@/components/SearchBar";
 import FilterCategory from "@/components/FilterCategory";
+import { useCookie } from "@/hooks/useCookie";
 
 export default function Home() {
   const [resources, setResources] = useLocalStorage<Resource[]>("lab_resources", []);
   const [editingResource, setEditingResource] = useState<Resource | undefined>(undefined);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+  const [theme, setTheme] = useCookie("lab_theme", "dark");
 
   // Filtros temporales -> Session Storage
   const [searchTerm, setSearchTerm] = useSessionStorage<string>("lab_resource_filter_search", "");
@@ -50,8 +52,15 @@ export default function Home() {
   }, [resources, searchTerm, selectedCategory]);
 
   return (
-    <main style={{ padding: 24 }}>
-      <Header />
+    <main
+  style={{
+    padding: 24,
+    backgroundColor: theme === "dark" ? "#111" : "#fafafa",
+    color: theme === "dark" ? "#eee" : "#111",
+    minHeight: "100vh",
+  }}
+>
+      <Header theme={theme} onToggleTheme={() => setTheme(theme === "dark" ? "light" : "dark")} />
 
       <ResourceForm onSubmit={handleSaveResource} initialData={editingResource} />
 
