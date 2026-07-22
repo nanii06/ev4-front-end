@@ -1,10 +1,10 @@
-
 "use client";
 
 import { useState, useMemo } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
 import { Resource } from "@/types/Resource";
+import Header from "@/components/Header";
 import ResourceForm from "@/components/ResourceForm";
 import ResourceList from "@/components/ResourceList";
 import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
@@ -51,7 +51,7 @@ export default function Home() {
 
   return (
     <main style={{ padding: 24 }}>
-      <h1>Gestión de Recursos Tecnológicos</h1>
+      <Header />
 
       <ResourceForm onSubmit={handleSaveResource} initialData={editingResource} />
 
